@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restaurante da Reyna | Delivery</title>
+<meta name="description" content="Restaurante da Reyna: comida caseira com tradição e qualidade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--madeira:#1a100a;--laranja:#f08a1c;--creme:#f6ead9;--card:#25170f}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Barlow,system-ui,sans-serif;color:var(--creme);line-height:1.6;
+ background:var(--madeira) repeating-linear-gradient(92deg,rgba(255,255,255,.03) 0 2px,transparent 2px 9px,rgba(0,0,0,.2) 9px 11px)}
+h1,h2,h3{font-family:"Barlow Condensed",Impact,sans-serif;font-weight:800;text-transform:uppercase;line-height:.95}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--laranja);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+.hero{padding:64px 0 90px;text-align:center;background:linear-gradient(180deg,transparent 55%,rgba(240,138,28,.38) 100%)}
+.slogan{font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.85rem;color:var(--laranja)}
+.hero h1{font-size:clamp(3.2rem,15vw,7.5rem);margin:14px 0 16px;color:#fff}
+.hero p.desc{max-width:40ch;margin:0 auto 26px;font-size:1.1rem;color:#e2d3bd}
+.pilula{display:inline-flex;border-radius:999px;overflow:hidden;font-family:"Barlow Condensed",sans-serif;font-weight:800;text-transform:uppercase;font-size:1.4rem;margin-bottom:26px}
+.pilula b{background:#fff;color:var(--madeira);padding:6px 20px}
+.pilula span{background:var(--laranja);color:var(--madeira);padding:6px 20px}
+.fone{display:block;font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:clamp(2.4rem,9vw,4rem);color:var(--laranja);text-decoration:none;margin-bottom:18px}
+.btn{display:inline-block;padding:15px 30px;background:var(--laranja);color:var(--madeira);font-weight:600;text-decoration:none;border-radius:6px;font-size:1.05rem}
+section{padding:70px 0}
+h2{font-size:clamp(2.4rem,8vw,4rem);margin-bottom:8px}
+h2 em{font-style:normal;color:var(--laranja)}
+.sub{color:#d9c8ad;margin-bottom:34px}
+.info{background:rgba(0,0,0,.35);border-top:3px solid var(--laranja)}
+.grade{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.grade h3{color:var(--laranja);font-size:1.6rem;margin-bottom:8px}
+.grade a{font-weight:600}
+footer{padding:26px 0 96px;font-size:.9rem;color:#a99880;text-align:center}
+.zap{position:fixed;right:18px;bottom:18px;z-index:10;background:#1faa59;color:#fff;border-radius:999px;padding:14px 20px;font-weight:600;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="wrap">
+  <div class="slogan" id="slogan"></div>
+  <h1 id="nome"></h1>
+  <p class="desc" id="descricao"></p>
+  <div class="pilula" id="pilula" hidden><b>Entrega</b><span id="entregaHero"></span></div>
+  <a class="fone" id="foneHero" href="#"></a>
+  <a class="btn" id="btnZap" href="#" target="_blank" rel="noopener">Fazer pedido no WhatsApp</a>
+</div></header>
+
+<main>
+<section class="info" id="info"><div class="wrap">
+  <h2>Faça seu <em>pedido</em></h2>
+  <p class="sub">Todas as informações para falar com a gente.</p>
+  <div class="grade" id="grade"></div>
+</div></section>
+</main>
+
+<a class="zap" id="zap" href="#" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">WhatsApp</a>
+<footer><div class="wrap" id="rodape"></div></footer>
+
+<script>
+/* ============ EDITE APENAS ESTE BLOCO PARA CADA RESTAURANTE ============ */
+const SITE = {
+  nome: "RESTAURANTE DA REYNA",
+  slogan: "Tradição e qualidade",
+  descricao: "Comida caseira feita com capricho. Peça pelo WhatsApp.",
+  whatsapp: "5514996846199",          // 55 + DDD + número, sem espaços
+  telefone: "(14) 99684-6199",         // como aparece na tela
+  whatsapp2: "5514991929977",          // segundo número (vazio = não aparece)
+  telefone2: "(14) 99192-9977",
+  entrega: "10h30 às 14h",
+  instagram: ""                        // usuário sem @ (vazio = não aparece)
+};
+/* ====================== daqui para baixo não mexe ====================== */
+const $ = id => document.getElementById(id);
+const zapLink = "https://wa.me/" + SITE.whatsapp + "?text=" + encodeURIComponent("Olá! Vim pelo site e gostaria de fazer um pedido.");
+document.title = SITE.nome + " | Delivery";
+document.querySelector('meta[name=description]').content = SITE.nome + ": comida caseira com tradição e qualidade. Entrega das " + SITE.entrega + ". Peça pelo WhatsApp.";
+$("slogan").textContent = SITE.slogan; $("nome").textContent = SITE.nome; $("descricao").textContent = SITE.descricao;
+$("foneHero").textContent = SITE.telefone; $("foneHero").href = zapLink; $("foneHero").target = "_blank";
+$("btnZap").href = zapLink; $("zap").href = zapLink;
+if (SITE.entrega) { $("pilula").hidden = false; $("entregaHero").textContent = SITE.entrega; }
+
+function bloco(titulo, linhas) {
+  const v = linhas.filter(Boolean); if (!v.length) return;
+  const b = document.createElement("div"); const h = document.createElement("h3"); h.textContent = titulo; b.appendChild(h);
+  v.forEach(l => { const p = document.createElement("p"); if (l.nodeType) p.appendChild(l); else p.textContent = l; b.appendChild(p); });
+  $("grade").appendChild(b);
+}
+function link(txt, href) { const a = document.createElement("a"); a.textContent = txt; a.href = href; a.target = "_blank"; a.rel = "noopener"; return a; }
+
+const zap2 = SITE.whatsapp2 && "https://wa.me/" + SITE.whatsapp2 + "?text=" + encodeURIComponent("Olá! Vim pelo site e gostaria de fazer um pedido.");
+bloco("Contato", [link(SITE.telefone, zapLink), SITE.whatsapp2 && link(SITE.telefone2, zap2), SITE.instagram && link("Instagram @" + SITE.instagram, "https://instagram.com/" + SITE.instagram)]);
+bloco("Entrega", ["Das " + SITE.entrega]);
+$("rodape").textContent = "© " + SITE.nome;
+</script>
+</body>
+</html>
